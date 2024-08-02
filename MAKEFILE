@@ -1,0 +1,26 @@
+# Nome do executável
+TARGET = exe
+
+# Diretórios
+SRC_DIR = src
+INCLUDE_DIR = include
+
+# Compilador e flags
+CC = g++
+CFLAGS = -Wall -I$(INCLUDE_DIR)
+
+# Obter arquivos .cpp e .o
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:.cpp=.o)
+
+# Regra principal
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $^
+
+# Regra para compilar arquivos .cpp em .o
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Limpeza
+clean:
+	rm -f $(OBJS) $(TARGET)
