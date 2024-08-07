@@ -1,5 +1,5 @@
 # Nome do executável
-TARGET = exe
+TARGET = gerenciador
 
 # Diretórios
 SRC_DIR = src
