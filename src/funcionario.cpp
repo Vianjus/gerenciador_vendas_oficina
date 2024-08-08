@@ -1,4 +1,4 @@
-#include "Funcionario.h"
+#include "funcionario.h"
 
 Funcionario::Funcionario(string nome, string cpf, string cargo) : Pessoa(nome, cpf), cargo(cargo) {}
 

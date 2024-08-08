@@ -1,7 +1,7 @@
 #ifndef SERVICO_H
 #define SERVICO_H
 
-#include "Item.h"
+#include "item.h"
 
 class Servico : public Item {
 public:

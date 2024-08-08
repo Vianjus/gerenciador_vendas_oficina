@@ -1,7 +1,7 @@
 #ifndef FUNCIONARIO_H
 #define FUNCIONARIO_H
 
-#include "Pessoa.h"
+#include "pessoa.h"
 
 class Funcionario : public Pessoa {
 protected: 

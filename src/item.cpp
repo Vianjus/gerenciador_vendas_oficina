@@ -1,4 +1,4 @@
-#include "Item.h"
+#include "item.h"
 
 Item::Item(string descricao, double preco) : descricao(descricao), preco(preco) {}
 

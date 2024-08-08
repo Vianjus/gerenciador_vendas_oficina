@@ -1,7 +1,7 @@
 #ifndef MECANICO_H
 #define MECANICO_H
 
-#include "Funcionario.h"
+#include "funcionario.h"
 
 class Mecanico : public Funcionario {
 public:

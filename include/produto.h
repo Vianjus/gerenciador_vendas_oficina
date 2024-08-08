@@ -1,7 +1,7 @@
 #ifndef PRODUTO_H
 #define PRODUTO_H
 
-#include "Item.h"
+#include "item.h"
 
 class Produto : public Item {
 public:

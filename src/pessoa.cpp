@@ -1,4 +1,4 @@
-#include "Pessoa.h"
+#include "pessoa.h"
 
 Pessoa::Pessoa(string nome, string cpf) : nome(nome), cpf(cpf) {}
 

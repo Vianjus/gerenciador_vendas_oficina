@@ -1,8 +1,8 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include "Pessoa.h"
-#include "Veiculo.h"
+#include "pessoa.h"
+#include "veiculo.h"
 #include <vector>
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "Cliente.h"
+#include "cliente.h"
 
 Cliente::Cliente(string nome, string cpf) : Pessoa(nome, cpf) {}
 
