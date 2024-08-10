@@ -5,7 +5,7 @@
 
 class Mecanico : public Funcionario {
 public:
-    Mecanico(string nome, string cpf);
+    Mecanico(string nome, string cpf, string senha);
 };
 
 #endif // MECANICO_H
