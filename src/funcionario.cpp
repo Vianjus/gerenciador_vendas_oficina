@@ -8,7 +8,7 @@ void Funcionario::setCargo(string cargo) {
     this->cargo = cargo;
 }
 
-string Funcionario::getCargo() {
+string Funcionario::getCargo() const {
     return cargo;
 }
 
@@ -16,6 +16,6 @@ void Funcionario::setSenha(string senha) {
     this->senha = senha;
 }
 
-string Funcionario::getSenha() {
+string Funcionario::getSenha() const {
     return senha;
 }

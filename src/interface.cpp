@@ -1,11 +1,14 @@
 #include "interface.h"
+#include "admin.h"
+#include "mecanico.h"
+#include "vendedor.h"
+#include "funcionario.h"
+
+#include <vector>
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <string>
-#include "vendedor.h"
-#include "mecanico.h"
-#include "funcionario.h"
 
 using namespace std;
 
@@ -33,11 +36,11 @@ int interfaceInicial (){
   cin >> opcao;
 
   if (opcao == 1 || opcao == 2)
-    return (opcao);// Convertendo para inteiro
+    return (opcao);
 
   limparTela();
   cout << "[!] - Entrada Invalida!" << endl << endl;
-  }while(repeat);
+  } while(repeat);
   return 2;
 }
 
@@ -45,12 +48,13 @@ int login (int escolha){
   bool repeat = true;
   limparTela();
   do{
-  cout << "[1] - Vendedor" << endl
+  cout << "[0] - Voltar" << endl
+       << "[1] - Vendedor" << endl
        << "[2] - Mecanico" << endl
        << "[3] - Administrador" << endl << endl
        << "Selecione: " << endl;
   cin >> escolha;
-  if (escolha == 1 || escolha == 2 || escolha == 3){
+  if (escolha >= 0 && escolha <= 3){
     repeat = false;
     break;
   } 
@@ -81,10 +85,10 @@ bool interfaceLogin(int tipoDeUsuario) {
 
   bool repeat = true;
   do{
-    cout << "usuario: ";
+    cout << "Usuario: ";
     cin >> inputUser;
 
-    cout << "senha: ";
+    cout << "Senha: ";
     cin >> inputPassword;
 
     nomeArquivo+=inputUser + ".txt";
@@ -119,6 +123,22 @@ bool interfaceLogin(int tipoDeUsuario) {
   return sucesso;
 }
 
+bool verificarLoginAdmin(const vector<Admin>& admins, const string& nomeUsuario, const string& senha) {
+    for (const auto& admin : admins) {
+        if (admin.getNome() == nomeUsuario) {
+            if (admin.getSenha() == senha) {
+                admin.acessarSistemaAdmin();
+                return true;
+            } else {
+                cout << "Senha incorreta!" << endl;
+                return false;
+            }
+        }
+    }
+    cout << "Usuario nao existe!" << endl;
+    return false;
+}
+
 int interfaceVendedor() {
   int escolha = 0;
   bool repeat = true;
@@ -149,7 +169,7 @@ int interfaceAdministrador(){
   do{
     cout << "-- AREA DO ADMINISTRADOR --" << endl
          << "[1] - Adicionar Funcionario" << endl
-         << "[2] - Editar Funcionario" << endl << endl
+         << "[2] - Editar Funcionario" << endl
          << "[3] - Excluir Funcionario" << endl << endl
          << "Selecione: " << endl;
     cin >> opcao;

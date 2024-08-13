@@ -13,9 +13,9 @@ public:
     virtual ~Funcionario();
 
     void setCargo(string cargo);
-    string getCargo();
+    string getCargo() const;
 
-    string getSenha();
+    string getSenha() const;
     void setSenha(string senha);
 
     friend void salvarFuncionario(const Funcionario& funcionario);

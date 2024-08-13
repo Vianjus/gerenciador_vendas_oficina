@@ -2,6 +2,7 @@
 #define PESSOA_H
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Pessoa {
@@ -14,10 +15,10 @@ public:
     virtual ~Pessoa();
 
     void setNome(string nome);
-    string getNome();
+    string getNome() const;
 
     void setCpf(string cpf);
-    string getCpf();   
+    string getCpf() const;   
 };
 
 #endif // PESSOA_H

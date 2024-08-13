@@ -1,34 +1,54 @@
 #include <iostream>
 #include "interface.h"
+#include "admin.h"
+#include "vendedor.h"
+#include "mecanico.h"
+#include <vector>
+
 using namespace std;
 
 int main() {
 
+  int escolha;
+  vector<Admin> admins;
+  admins.push_back(Admin ("admin", "0", "admin"));
+  vector<Mecanico> mecanicos;
+  vector<Vendedor> vendedores;
+  string nomeUsuario, senha;
+
+  do
+  {
   limparTela();
   
-  int escolha = interfaceInicial();
-  escolha = (escolha == 1) ? login(escolha) : 0;
-  if(escolha != 0 && interfaceLogin(escolha)){
-    switch (escolha) {
-      case 1:
-        escolha = interfaceVendedor();
+  escolha = interfaceInicial();
+  if(escolha == 2)
+    return 0;
+  escolha = login(escolha);
+  } while (escolha == 0);
+  
+  getchar();
+  cout << "Digite o nome de usuario: ";
+  getline(cin, nomeUsuario);
+
+  cout << "Digite a senha: ";
+  getline(cin, senha);
+  
+  switch (escolha) {
+    case 1:
+      //verificarLoginVend(vendedores, nomeUsuario, senha);  
       break;
-      case 2:
-        //adicionar interface do mecanico
+
+    case 2:
+      //verificarLoginMec(mecanicos, nomeUsuario, senha);
       break;
 
-      case 3:
-        escolha = interfaceAdministrador();
-        if(escolha == 1){
-          adicionarFuncionario();
-        } else {
+    case 3:
+      verificarLoginAdmin(admins, nomeUsuario, senha);  
+      break;
+    };
+  
 
-        }
-        break;
-    }
-  }
-
-  limparTela();
+  //limparTela();
 
   return 0;
 };
