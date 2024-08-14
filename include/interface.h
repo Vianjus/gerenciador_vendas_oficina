@@ -8,23 +8,23 @@
 #include <vector>
 #include <string>
 
-using namespace std;
-
 class Interface {
+private:
+    vector<Admin> admins;
+    vector<Mecanico> mecanicos;
+    vector<Vendedor> vendedores;
+
 public:
     Interface();
-    ~Interface();
 
     void limparTela();
-    bool arquivoExiste(const string& nome);
     int interfaceInicial();
     int login();
-    bool interfaceLogin(int tipoDeUsuario, const vector<Admin>& admins, const vector<Mecanico>& mecanicos, const vector<Vendedor>& vendedores);
-    bool verificarLoginAdmin(const vector<Admin>& admins, const string& nomeUsuario, const string& senha);
-    int interfaceVendedor();
-    int interfaceAdministrador();
-    void adicionarFuncionario(vector<Vendedor>& vendedores, vector<Mecanico>& mecanicos);
-    void salvarFuncionario(const Funcionario& funcionario);
+    bool verificarLoginAdmin(const string& nomeUsuario, const string& senha);
+    // Adicione métodos para verificar login de Mecânico e Vendedor
+    // bool verificarLoginMecanico(const string& nomeUsuario, const string& senha);
+    // bool verificarLoginVendedor(const string& nomeUsuario, const string& senha);
+    void iniciarSistema();
 };
 
 #endif // INTERFACE_H
