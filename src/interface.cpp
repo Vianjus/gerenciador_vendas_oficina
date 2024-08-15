@@ -5,7 +5,7 @@
 using namespace std;
 
 Interface::Interface() {
-    // Inicializando o vetor com um admin padrão
+    // Inicializando os vetores
     admins.push_back(Admin("admin", "0", "admin"));
     mecanicos.push_back(Mecanico("mecanico", "0", "admin"));
     vendedores.push_back(Vendedor("vendedor", "0", "admin"));
@@ -19,7 +19,7 @@ void Interface::limparTela() {
 #endif
 }
 
-int Interface::interfaceInicial() {
+int Interface::interfaceInicial(Interface& sistema) {
     int opcao;
     bool repeat = true;
     do {
@@ -60,7 +60,7 @@ int Interface::login() {
     return escolha;
 }
 
-void Interface::iniciarSistema() {
+void Interface::iniciarSistema(Interface& sistema) {
     int escolha;
     string nomeUsuario, senha;
     bool sucess;
@@ -68,7 +68,7 @@ void Interface::iniciarSistema() {
     do{
         do {
             limparTela();
-            escolha = interfaceInicial();
+            escolha = interfaceInicial(sistema);
             if (escolha == 2)
                 return;
 
@@ -84,25 +84,32 @@ void Interface::iniciarSistema() {
 
         switch (escolha) {
             case 1:
-                sucess = verificarLoginVendedor(nomeUsuario, senha);
+                sucess = verificarLoginVendedor(nomeUsuario, senha, sistema);
                 break;
 
             case 2:
-                sucess = verificarLoginMecanico(nomeUsuario, senha);
+                sucess = verificarLoginMecanico(nomeUsuario, senha, sistema);
                 break;
 
             case 3:
-                sucess = verificarLoginAdmin(nomeUsuario, senha);
+                sucess = verificarLoginAdmin(nomeUsuario, senha, sistema);
                 break;
         }
-    }while(sucess == false);
+    if (sucess == false)
+    {
+        cout << "Enter para tentar novamente" << endl;
+        getline(cin, nomeUsuario);
+    }
+    
+    }while(escolha != 2);
 }
 
-bool Interface::verificarLoginAdmin(const string& nomeUsuario, const string& senha) {
+bool Interface::verificarLoginAdmin(const string& nomeUsuario, const string& senha, Interface& sistema) {
     for (const auto& admin : admins) {
         if (admin.getNome() == nomeUsuario) {
             if (admin.getSenha() == senha) {
-                admin.acessarSistemaAdmin();
+                limparTela();
+                admin.acessarSistemaAdmin(sistema);
                 return true;
             } else {
                 cout << "Senha incorreta!" << endl;
@@ -111,19 +118,22 @@ bool Interface::verificarLoginAdmin(const string& nomeUsuario, const string& sen
         }
     }
     cout << "Usuario nao existe!" << endl;
-    
+
     return false;
 }
 
-bool Interface::verificarLoginVendedor(const string& nomeUsuario, const string& senha) {
+bool Interface::verificarLoginVendedor(const string& nomeUsuario, const string& senha, Interface& sistema) {
+    string aux; //só para verificar se esta acessando EXCLUIR DPS
     for (const auto& vendedor : vendedores) {
         if (vendedor.getNome() == nomeUsuario) {
             if (vendedor.getSenha() == senha) {
+                limparTela();
                 cout << "Login de Vendedor bem-sucedido!" << endl;
-                // Adicione aqui o código para acessar o sistema de vendedor
+                getline(cin, aux);
                 return true;
             } else {
                 cout << "Senha incorreta!" << endl;
+                getline(cin, aux);
                 return false;
             }
         }
@@ -132,10 +142,11 @@ bool Interface::verificarLoginVendedor(const string& nomeUsuario, const string& 
     return false;
 }
 
-bool Interface::verificarLoginMecanico(const string& nomeUsuario, const string& senha) {
+bool Interface::verificarLoginMecanico(const string& nomeUsuario, const string& senha, Interface& sistema) {
     for (const auto& mecanico : mecanicos) {
         if (mecanico.getNome() == nomeUsuario) {
             if (mecanico.getSenha() == senha) {
+                limparTela();
                 cout << "Login de Mecanico bem-sucedido!" << endl;
                 // Adicione aqui o código para acessar o sistema de mecânico
                 return true;

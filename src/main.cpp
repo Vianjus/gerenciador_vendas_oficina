@@ -2,6 +2,6 @@
 
 int main() {
     Interface sistema;
-    sistema.iniciarSistema();
+    sistema.iniciarSistema(sistema);
     return 0;
 }

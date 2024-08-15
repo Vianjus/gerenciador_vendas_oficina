@@ -8,6 +8,8 @@
 #include <vector>
 #include <string>
 
+class Admin; // Declaração antecipada da classe Admin
+
 class Interface {
 private:
     vector<Admin> admins;
@@ -15,15 +17,19 @@ private:
     vector<Vendedor> vendedores;
 
 public:
+
     Interface();
 
     void limparTela();
-    int interfaceInicial();
+    int interfaceInicial(Interface& sistema);
     int login();
-    bool verificarLoginAdmin(const string& nomeUsuario, const string& senha);
-    bool verificarLoginMecanico(const string& nomeUsuario, const string& senha);
-    bool verificarLoginVendedor(const string& nomeUsuario, const string& senha);
-    void iniciarSistema();
+    bool verificarLoginAdmin(const string& nomeUsuario, const string& senha, Interface& sistema);
+    bool verificarLoginMecanico(const string& nomeUsuario, const string& senha, Interface& sistema);
+    bool verificarLoginVendedor(const string& nomeUsuario, const string& senha, Interface& sistema);
+    void iniciarSistema(Interface& sistema);
+
+    // Torna a classe Admin amiga para que ela possa acessar os membros privados
+    friend class Admin;
 };
 
 #endif // INTERFACE_H

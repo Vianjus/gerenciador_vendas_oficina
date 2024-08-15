@@ -24,3 +24,7 @@ $(TARGET): $(OBJS)
 # Limpeza
 clean:
 	rm -f $(OBJS) $(TARGET)
+
+# Limpeza de arquivos .o na pasta src
+clean-objects:
+	rm -f $(SRC_DIR)/*.o
