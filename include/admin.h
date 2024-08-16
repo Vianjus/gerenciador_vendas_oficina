@@ -26,6 +26,9 @@ public:
     void editarVendedor(Interface& ) const;
     void editarMecanico(Interface& ) const;
 
+    void excluirVendedor(Interface& ) const;
+    void excluirMecanico(Interface& ) const;
+
 };
 
 #endif // ADMIN_H

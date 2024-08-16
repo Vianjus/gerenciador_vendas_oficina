@@ -82,7 +82,7 @@ void Admin::modificarVendedor(Interface& sistema) const {
             break;
 
         case 3:
-            
+            excluirVendedor(sistema);
             break;
         
         default:
@@ -120,7 +120,7 @@ void Admin::modificarMecanico(Interface& sistema) const {
             break;
 
         case 3:
-            
+            excluirMecanico(sistema);
             break;
         
         default:
@@ -174,7 +174,6 @@ void Admin:: editarAdmin(Interface& sistema) const {
 
 void Admin::adicionarMecanico(Interface& sistema) const {
     string nome, cpf, senha;
-    getchar();
     cout << "Digite o nome do novo mecanico:" << endl;
     getline( cin, nome);
     cout << "Digite o cpf do novo mecanico:" << endl;
@@ -271,4 +270,60 @@ void Admin::editarMecanico(Interface& sistema) const {
         }
     }
     cout << "\nPessoa nao encontrada." << endl << endl;
+}
+
+void Admin::excluirVendedor(Interface& sistema) const {
+    string nomeBusca;
+    
+    cout << "Digite o nome de quem voce quer excluir: " << endl;
+    getline(cin, nomeBusca);
+
+    for (auto it = sistema.vendedores.begin(); it != sistema.vendedores.end(); ++it) {
+        if (it->getNome() == nomeBusca) {
+            cout << "\nDados do vendedor encontrado!" << endl << endl;
+            it->printInfo();
+
+            char escolha;
+            cout << "Deseja excluir os dados desse vendedor? (s/n): ";
+            cin >> escolha;
+
+            if (escolha == 's' || escolha == 'S') {
+                sistema.vendedores.erase(it);
+                cout << "Vendedor excluido com sucesso!" << endl;
+            } else {
+                cout << "Operacao cancelada." << endl;
+            }
+            return;
+        }
+    }
+
+    cout << "Vendedor nao encontrado." << endl;
+}
+
+void Admin::excluirMecanico(Interface& sistema) const {
+    string nomeBusca;
+    
+    cout << "Digite o nome do mecanico que você quer excluir: ";
+    getline(cin, nomeBusca);
+
+    for (auto it = sistema.mecanicos.begin(); it != sistema.mecanicos.end(); ++it) {
+        if (it->getNome() == nomeBusca) {
+            cout << "\nDados do mecanico encontrado!" << endl << endl;
+            it->printInfo();
+
+            char escolha;
+            cout << "Deseja excluir os dados desse mecanico? (s/n): ";
+            cin >> escolha;
+
+            if (escolha == 's' || escolha == 'S') {
+                sistema.mecanicos.erase(it);
+                cout << "Mecanico excluído com sucesso." << endl;
+            } else {
+                cout << "Exclusao cancelada." << endl;
+            }
+            return;
+        }
+    }
+
+    cout << "Mecanico nao encontrado." << endl;
 }
