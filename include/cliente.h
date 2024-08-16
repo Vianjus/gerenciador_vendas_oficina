@@ -21,6 +21,7 @@ public:
     void imprimirOrdensFinalizadas() const;
     string getVeiculo() const { return veiculo; };
     void adicionarOrdem(Servico* servico) { ordens.push_back(servico); };
+    const vector<Servico*>& getOrdens() const;
 };
 
 #endif // CLIENTE_H

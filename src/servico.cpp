@@ -25,3 +25,9 @@ void Servico::imprimir() const {
               << "Status: " << (status == 1 ? "Pendente" : "Finalizado") << "\n"
               << "Tipo de Servico: " << (tipoServico == 1 ? "Revisao" : "Manutencao") << "\n";
 }
+
+void Servico::marcarComoFinalizado() {
+    if (status == 1) { // Se está pendente
+        status = 2; // Marque como finalizado
+    }
+}

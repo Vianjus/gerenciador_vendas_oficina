@@ -18,6 +18,9 @@ public:
     bool isPendente() const;
     bool isFinalizado() const;
     void imprimir() const;
+
+    void marcarComoFinalizado();
+    
 };
 
 #endif // SERVICO_H

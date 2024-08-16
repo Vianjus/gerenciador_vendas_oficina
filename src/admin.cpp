@@ -3,12 +3,15 @@
 #include <iostream>
 using namespace std;
 
+//Construtor da classe Admin
 Admin::Admin(string nome, string cpf, string senha)
     : Funcionario(nome, cpf, "Admin", senha) {
 }
 
+//Destrutor da clase Admin
 Admin::~Admin() {}
 
+//Acessa o SistemaAdmin para o admin fazer escolha do que ele quer modificar
 void Admin::acessarSistemaAdmin(Interface& sistema) const {
     int escolha;
     do
@@ -35,6 +38,7 @@ void Admin::acessarSistemaAdmin(Interface& sistema) const {
     } while (escolha != 0);    
 }
 
+//Tela que aparece para o Admin escolher o que ele quer fazer
 int Admin::telaAdmin() const {
 
     int escolha;
@@ -54,6 +58,7 @@ int Admin::telaAdmin() const {
     
 }
 
+//Tela das opções do que se pode fazer com os dados de um vendedor
 void Admin::modificarVendedor(Interface& sistema) const {
 
     int escolha;
@@ -92,6 +97,7 @@ void Admin::modificarVendedor(Interface& sistema) const {
     } while (escolha != 0);
 }
 
+//Tela das opções do que se pode fazer com os dados de um mecanico
 void Admin::modificarMecanico(Interface& sistema) const {
 
     int escolha;
@@ -130,6 +136,7 @@ void Admin::modificarMecanico(Interface& sistema) const {
     } while (escolha != 0);
 }
 
+//Tela das opções do que se pode fazer com os dados de um admin
 void Admin::modificarAdmin(Interface& sistema) const {
 
     int escolha;
@@ -158,6 +165,7 @@ void Admin::modificarAdmin(Interface& sistema) const {
     } while (escolha != 0);
 }
 
+//Modifica dados de um admin ja existente
 void Admin:: editarAdmin(Interface& sistema) const {
     string nome, cpf, senha;
     cout << "Digite o novo nome:" << endl;
@@ -172,6 +180,7 @@ void Admin:: editarAdmin(Interface& sistema) const {
     cout << "Administrador atualizado com sucesso!\n";
 }
 
+//Adciona um mecanico
 void Admin::adicionarMecanico(Interface& sistema) const {
     string nome, cpf, senha;
     cout << "Digite o nome do novo mecanico:" << endl;
@@ -185,6 +194,7 @@ void Admin::adicionarMecanico(Interface& sistema) const {
     cout << "Mecanico adicionado com sucesso!\n";
 }
 
+//Adiciona um vendedor
 void Admin::adicionarVendedor(Interface& sistema) const {
     string nome, cpf, senha;
     cout << "Digite o nome do novo vendedor:" << endl;
@@ -198,6 +208,7 @@ void Admin::adicionarVendedor(Interface& sistema) const {
     cout << "Vendedor adicionado com sucesso!\n";
 }
 
+//Modifica dados de um vendedor ja existente
 void Admin::editarVendedor(Interface& sistema) const {
     string nomeBusca;
     
@@ -235,6 +246,7 @@ void Admin::editarVendedor(Interface& sistema) const {
     cout << "\nPessoa nao encontrada." << endl << endl;
 }
 
+//Modifica dados de um mecanico ja existente
 void Admin::editarMecanico(Interface& sistema) const {
     string nomeBusca;
     
@@ -272,6 +284,7 @@ void Admin::editarMecanico(Interface& sistema) const {
     cout << "\nPessoa nao encontrada." << endl << endl;
 }
 
+//Exclui dados de um vendedor ja existente
 void Admin::excluirVendedor(Interface& sistema) const {
     string nomeBusca;
     
@@ -300,6 +313,7 @@ void Admin::excluirVendedor(Interface& sistema) const {
     cout << "Vendedor nao encontrado." << endl;
 }
 
+//Exclui dados de um mecanico ja existente
 void Admin::excluirMecanico(Interface& sistema) const {
     string nomeBusca;
     

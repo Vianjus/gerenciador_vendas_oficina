@@ -43,3 +43,7 @@ void Cliente::imprimirOrdensFinalizadas() const {
         }
     }
 }
+
+const vector<Servico*>& Cliente::getOrdens() const {
+    return ordens;
+}

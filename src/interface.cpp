@@ -148,7 +148,7 @@ bool Interface::verificarLoginMecanico(const string& nomeUsuario, const string& 
             if (mecanico.getSenha() == senha) {
                 limparTela();
                 cout << "Login de Mecanico bem-sucedido!" << endl;
-                // Adicione aqui o código para acessar o sistema de mecânico
+                mecanico.acessarSistemaMecanico(sistema);
                 return true;
             } else {
                 cout << "Senha incorreta!" << endl;

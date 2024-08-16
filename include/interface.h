@@ -29,10 +29,12 @@ public:
     bool verificarLoginMecanico(const string& nomeUsuario, const string& senha, Interface& sistema);
     bool verificarLoginVendedor(const string& nomeUsuario, const string& senha, Interface& sistema);
     void iniciarSistema(Interface& sistema);
+    const vector<Cliente>& getClientes() const { return clientes; }
 
-    // Torna a classe Admin amiga para que ela possa acessar os membros privados
+    // Torna a classes amigas para que elas possam acessar os membros privados
     friend class Admin;
     friend class Vendedor;
+    friend class Mecanico;
 };
 
 #endif // INTERFACE_H
