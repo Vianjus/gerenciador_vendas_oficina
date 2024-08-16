@@ -19,6 +19,8 @@ public:
 
     void imprimirOrdensPendentes() const;
     void imprimirOrdensFinalizadas() const;
+    string getVeiculo() const { return veiculo; };
+    void adicionarOrdem(Servico* servico) { ordens.push_back(servico); };
 };
 
 #endif // CLIENTE_H

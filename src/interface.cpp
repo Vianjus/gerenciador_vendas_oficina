@@ -124,7 +124,7 @@ bool Interface::verificarLoginAdmin(const string& nomeUsuario, const string& sen
 
 bool Interface::verificarLoginVendedor(const string& nomeUsuario, const string& senha, Interface& sistema) {
     string aux; //só para verificar se esta acessando EXCLUIR DPS
-    for (const auto& vendedor : vendedores) {
+    for ( auto& vendedor : vendedores) {
         if (vendedor.getNome() == nomeUsuario) {
             if (vendedor.getSenha() == senha) {
                 limparTela();

@@ -11,7 +11,7 @@ public:
     Vendedor(string nome, string cpf, string senha);
     ~Vendedor();
     
-    void telaInit(Interface& ) const;
+    void telaInit(Interface& );
     void cadastrarCliente(Interface&);
     void gerarOrdem(Interface&);
     void visualizarAprovar(Interface&);

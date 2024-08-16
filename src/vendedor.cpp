@@ -4,14 +4,16 @@
 Vendedor::Vendedor(string nome, string cpf, string senha) 
     : Funcionario(nome, cpf, "Vendedor", senha) {}
 
-void Vendedor::telaInit(Interface& sistema) const{
+Vendedor::~Vendedor() {}
+
+void Vendedor::telaInit(Interface& sistema) {
     int option;
     do {
-        cout << "========== ÁREA DO VENDEDOR ==========" << endl
-            << "[1] - Cadastrar cliente e veículo." << endl
-            << "[2] - Gerar ordem de serviço." << endl
-            << "[3] - Visualizar ordens de serviço de orçamento pendentes de aprovação do cliente e marcar como aprovadas." << endl
-            << "[4] - Visualizar ordens de serviço executadas e realizar o fechamento." << endl
+        cout << "========== AREA DO VENDEDOR ==========" << endl
+            << "[1] - Cadastrar cliente e veiculo." << endl
+            << "[2] - Gerar ordem de servico." << endl
+            << "[3] - Visualizar ordens de servico de orcamento pendentes de aprovacao do cliente e marcar como aprovadas." << endl
+            << "[4] - Visualizar ordens de servico executadas e realizar o fechamento." << endl
             << "[0] - Voltar\n" << endl;
 
         cin >> option;
@@ -44,7 +46,7 @@ void Vendedor::cadastrarCliente(Interface& sistema) {
 
     cout << "Digite o nome do cliente: " << endl;
     cin >> nome; cout << "\n";
-    cout << "Digite o modelo do veículo: " << endl;
+    cout << "Digite o modelo do veiculo: " << endl;
     cin >> veiculo; cout << "\n";
 
     Cliente cliente(nome, veiculo);
@@ -59,16 +61,16 @@ void Vendedor::gerarOrdem(Interface& sistema) {
     for (Cliente& meuCliente : sistema.clientes) { // busca o cliente
         if (nome == meuCliente.getNome()) {
             cout << "CLIENTE: " << meuCliente.getNome() << endl;
-            cout << "VEÍCULO: " << meuCliente.getVeiculo() << endl;
+            cout << "VEICULO: " << meuCliente.getVeiculo() << endl;
 
             int servico = rand()%2 + 1;
             int valor = (servico == 1) ? 100 : 1000;
 
-            meuCliente.adicionarOrdem(new Servico("Descrição do serviço", valor, servico));
+            meuCliente.adicionarOrdem(new Servico("Descricao do servico", valor, servico));
             return;
         }
     }
-    cout << "Cliente não encontrado." << endl;       
+    cout << "Cliente nao encontrado." << endl;       
 }
 
 void Vendedor::visualizarAprovar(Interface& sistema) {
@@ -83,7 +85,7 @@ void Vendedor::visualizarAprovar(Interface& sistema) {
         }
     }
 
-    cout << "Cliente não encontrado." << endl;
+    cout << "Cliente nao encontrado." << endl;
 }
 
 void Vendedor::visualizarFechar(Interface& sistema) {
@@ -98,5 +100,5 @@ void Vendedor::visualizarFechar(Interface& sistema) {
         }
     }
 
-    cout << "Cliente não encontrado." << endl;
+    cout << "Cliente nao encontrado." << endl;
 }
