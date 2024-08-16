@@ -5,6 +5,7 @@
 #include "admin.h"
 #include "mecanico.h"
 #include "vendedor.h"
+#include "cliente.h"
 #include <vector>
 #include <string>
 
@@ -15,6 +16,7 @@ private:
     vector<Admin> admins;
     vector<Mecanico> mecanicos;
     vector<Vendedor> vendedores;
+    vector<Cliente> clientes;
 
 public:
 
@@ -30,6 +32,7 @@ public:
 
     // Torna a classe Admin amiga para que ela possa acessar os membros privados
     friend class Admin;
+    friend class Vendedor;
 };
 
 #endif // INTERFACE_H

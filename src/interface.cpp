@@ -129,7 +129,7 @@ bool Interface::verificarLoginVendedor(const string& nomeUsuario, const string& 
             if (vendedor.getSenha() == senha) {
                 limparTela();
                 cout << "Login de Vendedor bem-sucedido!" << endl;
-                getline(cin, aux);
+                vendedor.telaInit(sistema);
                 return true;
             } else {
                 cout << "Senha incorreta!" << endl;

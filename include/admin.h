@@ -2,7 +2,7 @@
 #define ADMIN_H
 
 #include "funcionario.h"
-#include "interface.h" // Inclua a interface para acessar seus membro
+#include "interface.h"
 
 class Interface;
 

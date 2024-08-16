@@ -1,18 +1,24 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include "pessoa.h"
-#include "veiculo.h"
+#include <string>
 #include <vector>
+#include "pessoa.h"
+#include "servico.h"
+
 using namespace std;
 
 class Cliente : public Pessoa {
 private:
-    vector<Veiculo> veiculos;
+    string veiculo;
+    vector<Servico*> ordens; // Lista de ordens de serviço
 
-public: 
-    Cliente(string nome, string cpf);
-    virtual ~Cliente();
+public:
+    Cliente(const string& nome, const string& veiculo); // Modifique a declaração aqui
+    ~Cliente();
+
+    void imprimirOrdensPendentes() const;
+    void imprimirOrdensFinalizadas() const;
 };
 
 #endif // CLIENTE_H

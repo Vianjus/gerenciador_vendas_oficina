@@ -3,9 +3,19 @@
 
 #include "funcionario.h"
 
+// Declaração antecipada da classe Interface
+class Interface;
+
 class Vendedor : public Funcionario {
 public:
     Vendedor(string nome, string cpf, string senha);
-   };
+    ~Vendedor();
+    
+    void telaInit(Interface& ) const;
+    void cadastrarCliente(Interface&);
+    void gerarOrdem(Interface&);
+    void visualizarAprovar(Interface&);
+    void visualizarFechar(Interface&);
+};
 
 #endif // VENDEDOR_H
