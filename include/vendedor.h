@@ -6,6 +6,6 @@
 class Vendedor : public Funcionario {
 public:
     Vendedor(string nome, string cpf, string senha);
-};
+   };
 
 #endif // VENDEDOR_H

@@ -13,7 +13,7 @@ void Admin::acessarSistemaAdmin(Interface& sistema) const {
     int escolha;
     do
     { 
-        cout << "Acesso concedido: " << nome << endl << endl;
+        cout << "Acesso concedido: " << endl << endl;
         escolha = telaAdmin();
 
         switch (escolha)
@@ -23,7 +23,7 @@ void Admin::acessarSistemaAdmin(Interface& sistema) const {
             break;
         
         case 2: //Mecânico
-            
+            modificarMecanico(sistema);
             break;
 
         case 3: //Admin
@@ -45,6 +45,7 @@ int Admin::telaAdmin() const {
          << "Selecione qual cargo desejada modificar: " << endl;
     do{
     cin >> escolha;
+    cin.ignore(); // Limpa o buffer do cin
     if (escolha >= 0 && escolha <= 3)
         return escolha;
     cout << "[!] - Entrada incorreta" << endl
@@ -64,6 +65,7 @@ void Admin::modificarVendedor(Interface& sistema) const {
             << "[0] - Voltar" << endl << endl
             << "Selecione: ";
         cin >> escolha;
+        cin.ignore(); // Limpa o buffer do cin
 
         switch (escolha)
         {
@@ -76,7 +78,7 @@ void Admin::modificarVendedor(Interface& sistema) const {
             break;
 
         case 2:
-            
+            editarVendedor(sistema);
             break;
 
         case 3:
@@ -101,6 +103,7 @@ void Admin::modificarMecanico(Interface& sistema) const {
             << "[0] - Voltar" << endl << endl
             << "Selecione: ";
         cin >> escolha;
+        cin.ignore(); // Limpa o buffer do cin
 
         switch (escolha)
         {
@@ -113,7 +116,7 @@ void Admin::modificarMecanico(Interface& sistema) const {
             break;
 
         case 2:
-            
+            editarMecanico(sistema);
             break;
 
         case 3:
@@ -136,6 +139,7 @@ void Admin::modificarAdmin(Interface& sistema) const {
             << "[0] - Voltar" << endl << endl
             << "Selecione: ";
         cin >> escolha;
+        cin.ignore(); // Limpa o buffer do cin
 
         switch (escolha)
         {
@@ -156,7 +160,6 @@ void Admin::modificarAdmin(Interface& sistema) const {
 
 void Admin:: editarAdmin(Interface& sistema) const {
     string nome, cpf, senha;
-    getchar();
     cout << "Digite o novo nome:" << endl;
     getline( cin, nome);
     cout << "Digite o novo cpf:" << endl;
@@ -185,7 +188,6 @@ void Admin::adicionarMecanico(Interface& sistema) const {
 
 void Admin::adicionarVendedor(Interface& sistema) const {
     string nome, cpf, senha;
-    getchar();
     cout << "Digite o nome do novo vendedor:" << endl;
     getline( cin, nome);
     cout << "Digite o cpf do novo vendedor:" << endl;
@@ -197,34 +199,76 @@ void Admin::adicionarVendedor(Interface& sistema) const {
     cout << "Vendedor adicionado com sucesso!\n";
 }
 
-// void Admin::editarVendedor(Interface& sistema) const {
-//     for (auto& sistema.vendedores : pessoas) {
-//         if (pessoa.getNome() == nomeBusca) {
-//             cout << "Dados da pessoa encontrada:" << endl;
-//             pessoa.printInfo();
+void Admin::editarVendedor(Interface& sistema) const {
+    string nomeBusca;
+    
+    cout << "Digite o nome de quem voce quer editar: " << endl;
+    getline(cin, nomeBusca);
 
-//             char escolha;
-//             cout << "Deseja editar os dados dessa pessoa? (s/n): ";
-//             cin >> escolha;
+    for (auto& Vendedor : sistema.vendedores) {
+        if (Vendedor.getNome() == nomeBusca) {
+            cout << "\nDados da pessoa encontrada!" << endl << endl;
+            Vendedor.printInfo();
 
-//             if (escolha == 's' || escolha == 'S') {
-//                 string novoNome, novoCpf, novaSenha;
-//                 cout << "Digite o novo nome: ";
-//                 cin.ignore(); // Limpa o buffer do cin
-//                 getline(cin, novoNome);
-//                 cout << "Digite o novo CPF: ";
-//                 getline(cin, novoCpf);
-//                 cout << "Digite a nova senha: ";
-//                 getline(cin, novaSenha);
+            char escolha;
+            cout << "Deseja editar os dados dessa pessoa? (s/n): ";
+            cin >> escolha;
 
-//                 pessoa.setNome(novoNome);
-//                 pessoa.setCpf(novoCpf);
-//                 pessoa.setSenha(novaSenha);
+            if (escolha == 's' || escolha == 'S') {
+                string novoNome, novoCpf, novaSenha;
+                cout << "Digite o novo nome: ";
+                cin.ignore(); // Limpa o buffer do cin
+                getline(cin, novoNome);
+                cout << "Digite o novo CPF: ";
+                getline(cin, novoCpf);
+                cout << "Digite a nova senha: ";
+                getline(cin, novaSenha);
 
-//                 cout << "Dados atualizados com sucesso!" << endl;
-//             }
-//             return;
-//         }
-//     }
-//     cout << "Pessoa não encontrada." << endl;
-// }
+                Vendedor.setNome(novoNome);
+                Vendedor.setCpf(novoCpf);
+                Vendedor.setSenha(novaSenha);
+
+                cout << "Dados atualizados com sucesso!" << endl;
+            }
+            return;
+        }
+    }
+    cout << "\nPessoa nao encontrada." << endl << endl;
+}
+
+void Admin::editarMecanico(Interface& sistema) const {
+    string nomeBusca;
+    
+    cout << "Digite o nome de quem voce quer editar: " << endl;
+    getline(cin, nomeBusca);
+
+    for (auto& Mecanico : sistema.mecanicos) {
+        if (Mecanico.getNome() == nomeBusca) {
+            cout << "\nDados da pessoa encontrada!" << endl << endl;
+            Mecanico.printInfo();
+
+            char escolha;
+            cout << "Deseja editar os dados dessa pessoa? (s/n): ";
+            cin >> escolha;
+
+            if (escolha == 's' || escolha == 'S') {
+                string novoNome, novoCpf, novaSenha;
+                cout << "Digite o novo nome: ";
+                cin.ignore(); // Limpa o buffer do cin
+                getline(cin, novoNome);
+                cout << "Digite o novo CPF: ";
+                getline(cin, novoCpf);
+                cout << "Digite a nova senha: ";
+                getline(cin, novaSenha);
+
+                Mecanico.setNome(novoNome);
+                Mecanico.setCpf(novoCpf);
+                Mecanico.setSenha(novaSenha);
+
+                cout << "Dados atualizados com sucesso!" << endl;
+            }
+            return;
+        }
+    }
+    cout << "\nPessoa nao encontrada." << endl << endl;
+}

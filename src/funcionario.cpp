@@ -19,3 +19,10 @@ void Funcionario::setSenha(string senha) {
 string Funcionario::getSenha() const {
     return senha;
 }
+
+void Funcionario::printInfo() const {
+        cout << "Dados do " << cargo << ":" << endl;
+        cout << "Nome: " << getNome() << endl;
+        cout << "CPF: " << getCpf() << endl;
+        cout << "Senha: " << getSenha() << endl;
+}

@@ -24,6 +24,7 @@ public:
     void adicionarVendedor(Interface& ) const;
 
     void editarVendedor(Interface& ) const;
+    void editarMecanico(Interface& ) const;
 
 };
 

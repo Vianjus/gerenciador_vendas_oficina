@@ -17,6 +17,7 @@ public:
 
     string getSenha() const;
     void setSenha(string senha);
+    void printInfo() const;
 
     friend void salvarFuncionario(const Funcionario& funcionario);
 };
