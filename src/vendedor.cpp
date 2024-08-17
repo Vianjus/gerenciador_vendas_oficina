@@ -1,5 +1,6 @@
 #include "vendedor.h"
 #include "interface.h"
+#include "servico.h"
 
 Vendedor::Vendedor(string nome, string cpf, string senha) 
     : Funcionario(nome, cpf, "Vendedor", senha) {}
@@ -55,18 +56,44 @@ void Vendedor::cadastrarCliente(Interface& sistema) {
 
 void Vendedor::gerarOrdem(Interface& sistema) {
     string nome;
+    double valorFinal = 0;
     cout << "Digite o nome do cliente: ";
     cin >> nome; cout << "\n";
+    cin.ignore();
     
     for (Cliente& meuCliente : sistema.clientes) { // busca o cliente
         if (nome == meuCliente.getNome()) {
-            cout << "CLIENTE: " << meuCliente.getNome() << endl;
-            cout << "VEICULO: " << meuCliente.getVeiculo() << endl;
+            bool repeat;
+            do{
 
-            int servico = rand()%2 + 1;
-            int valor = (servico == 1) ? 100 : 1000;
-
-            meuCliente.adicionarOrdem(new Servico("Descricao do servico", valor, servico));
+                char confirm;
+                string nomeServico;
+                double valor;
+                cout << "CLIENTE: " << meuCliente.getNome() << endl;
+                cout << "VEICULO: " << meuCliente.getVeiculo() << endl << endl;
+                cout << "Digite nome do servico: ";
+                getline(cin, nomeServico);
+                cout << "Digite valor do servico: ";
+                cin >> valor;
+                cin.ignore();
+                cout << "\n[!] - Confirma o envio da ordem de servico? [s/n]\n";
+                cin >> confirm;
+                cin.ignore();
+                if(confirm == 'S' ||confirm == 's'){
+                    meuCliente.adicionarOrdem(new Servico(nomeServico, valor, 1));
+                    cout << "[!] - Ordem aberta com sucesso!\n";
+                    valorFinal+= valor;
+                }
+                else
+                    cout << "[!] - Ordem nao aberta!\n";
+            
+                cout << "\n[!] - Abrir mais ordem de servico? [s/n]\n";
+                cin >> confirm;
+                cin.ignore();
+                repeat = (confirm == 'S' ||confirm == 's') ? true : false;
+                    
+            } while (repeat);
+            cout << "\n[!] - Valor total de todos servicos: " << valorFinal <<endl;
             return;
         }
     }

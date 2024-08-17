@@ -1,11 +1,16 @@
 #include "servico.h"
+using namespace std;
 
 // Construtor da classe Servico
-Servico::Servico(string descricao, double preco, int tipoServico)
-    : Item(descricao, preco), valor(tipoServico == 1 ? 100 : 1000), status(1), tipoServico(tipoServico) {}
+Servico::Servico(string descricao, double preco, int status)
+    : Item(descricao, preco) {}
 
 // Destrutor da classe Servico
 Servico::~Servico() {}
+
+bool Servico::isValiando() const {
+    return status == 0;
+}
 
 // Verifica se o serviço está pendente
 bool Servico::isPendente() const {
@@ -19,11 +24,18 @@ bool Servico::isFinalizado() const {
 
 // Imprime informações do serviço
 void Servico::imprimir() const {
-    std::cout << "Descricao: " << descricao << "\n"
+    string estado = (status == 1) ? "Pendente" : "Finalizada";
+    cout << "Descricao: " << descricao << "\n"
               << "Preco: $" << preco << "\n"
-              << "Valor: $" << valor << "\n"
-              << "Status: " << (status == 1 ? "Pendente" : "Finalizado") << "\n"
-              << "Tipo de Servico: " << (tipoServico == 1 ? "Revisao" : "Manutencao") << "\n";
+              << "Status: " <<  estado
+              << endl;
+
+}
+
+void Servico::marcarComoPendente() {
+    if (status == 0) { // Se está pendente
+        status = 1; // Marque como finalizado
+    }
 }
 
 void Servico::marcarComoFinalizado() {

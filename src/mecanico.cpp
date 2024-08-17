@@ -13,8 +13,8 @@ void Mecanico::acessarSistemaMecanico(Interface& sistema){
 
   do{
   cout << "--AREA DO MECANICO--\n" << endl
-       << "[1] - Visualizar ordens de serviço abertas" << endl
-       << "[2] - Cadastrar serviços executados e peças utilizadas" << endl
+       << "[1] - Visualizar ordens de servico abertas" << endl
+       << "[2] - Cadastrar servicos executados e pecas utilizadas" << endl
        << "[0] - Voltar\n" << endl
        << "Selecione: ";
   cin >> escolha;
@@ -35,7 +35,7 @@ void Mecanico::acessarSistemaMecanico(Interface& sistema){
     break;
 
   default:
-    cout << "\n[!] - Entrada Inválida\n"<< endl;
+    cout << "\n[!] - Entrada Invalida\n"<< endl;
     break;
   }
   }while(escolha != 0);
@@ -45,7 +45,7 @@ void Mecanico::acessarSistemaMecanico(Interface& sistema){
 void Mecanico::imprimirOrdensPendentes(Interface& sistema){
     const vector<Cliente>& clientes = sistema.getClientes();
     for (const Cliente& cliente : clientes) {
-        cout << "Cliente: " << cliente.getNome() << " - Veículo: " << cliente.getVeiculo() << endl;
+        cout << "Cliente: " << cliente.getNome() << " - Veiculo: " << cliente.getVeiculo() << endl;
         cliente.imprimirOrdensPendentes();
         cout << "-------------------------" << endl;
     }
@@ -62,7 +62,7 @@ void Mecanico::finalizarOrdem(Interface& sistema) const {
         if (cliente.getNome() == nomeCliente) {
             cliente.imprimirOrdensPendentes(); // Imprime as ordens pendentes
 
-            cout << "Digite o índice da ordem de serviço que deseja finalizar: ";
+            cout << "Digite o indice da ordem de servico que deseja finalizar: ";
             cin >> ordemIndex;
             cin.ignore(); // Para limpar o buffer após a leitura do índice
 
@@ -70,16 +70,16 @@ void Mecanico::finalizarOrdem(Interface& sistema) const {
                 Servico* servico = cliente.getOrdens()[ordemIndex];
                 if (servico->isPendente()) {
                     servico->marcarComoFinalizado();
-                    cout << "Ordem de serviço finalizada com sucesso!" << endl;
+                    cout << "Ordem de servico finalizada com sucesso!" << endl;
                 } else {
-                    cout << "A ordem de serviço não está pendente." << endl;
+                    cout << "A ordem de servico nao esta pendente." << endl;
                 }
             } else {
-                cout << "Índice inválido." << endl;
+                cout << "Indice invalido." << endl;
             }
             return;
         }
     }
 
-    cout << "Cliente não encontrado." << endl;
+    cout << "Cliente nao encontrado." << endl;
 }

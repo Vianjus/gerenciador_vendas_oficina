@@ -16,7 +16,7 @@ void Admin::acessarSistemaAdmin(Interface& sistema) const {
     int escolha;
     do
     { 
-        cout << "Acesso concedido: " << endl << endl;
+        cout << "Acesso concedido!" << endl << endl;
         escolha = telaAdmin();
 
         switch (escolha)

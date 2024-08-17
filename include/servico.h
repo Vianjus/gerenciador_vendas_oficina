@@ -6,19 +6,21 @@
 #include <iostream>
 
 class Servico : public Item {
-    int valor; // 1. revisão - $100 || 2. manutenção - $1000
-    int status; // 1. pendente || 2. finalizado
-    int tipoServico;
+    double preco;
+    int status; // 0. Avaliação || 1. pendente || 2. finalizado
+    string nome;
 
 public:
-    Servico(string descricao, double preco, int tipoServico);
+    Servico(string nome, double preco, int status);
     virtual ~Servico();
 
     // Métodos de acesso
+    bool isValiando() const;
     bool isPendente() const;
     bool isFinalizado() const;
     void imprimir() const;
 
+    void marcarComoPendente();
     void marcarComoFinalizado();
     
 };
