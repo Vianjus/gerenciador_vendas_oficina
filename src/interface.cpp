@@ -143,7 +143,7 @@ bool Interface::verificarLoginVendedor(const string& nomeUsuario, const string& 
 }
 
 bool Interface::verificarLoginMecanico(const string& nomeUsuario, const string& senha, Interface& sistema) {
-    for (const auto& mecanico : mecanicos) {
+    for (auto& mecanico : mecanicos) {
         if (mecanico.getNome() == nomeUsuario) {
             if (mecanico.getSenha() == senha) {
                 limparTela();

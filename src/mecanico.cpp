@@ -53,7 +53,7 @@ void Mecanico::imprimirOrdensPendentes(Interface& sistema){
 
 void Mecanico::finalizarOrdem(Interface& sistema) const {
     string nomeCliente;
-    int ordemIndex = -1;
+    size_t ordemIndex = -1;
 
     cout << "Digite o nome do cliente: ";
     getline(cin, nomeCliente);

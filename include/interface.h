@@ -9,7 +9,8 @@
 #include <vector>
 #include <string>
 
-class Admin; // Declaração antecipada da classe Admin
+class Admin; // Declaração antecipada
+class Mecanico;
 
 class Interface {
 private:
